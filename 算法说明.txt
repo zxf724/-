@@ -1,0 +1,9 @@
+1.例程基于keil，工程位置：\stepmotor-both2014xxx\RT-Thread_1.2.0\bsp\stm32f10x\project.uvproj
+2.例程里面的操作系统是RT THREAD，这是国产开源操作系统，如果有兴趣可以使用，但是例程与操作系统无关。
+3.算法主要在motor.c ,motor_it.c 以及MotorStart.c
+  MotorStart.c是主要上层代码，主要演示了电机的位置控制代码
+  motor_it.c是PWM（S型曲线）和TIM（SPTA）的中断函数，SPTA算法在中断函数里TIMX_IRQHandler_SPTA。
+  motor.c里面是驱动，串口初始化、电机控制口初始化、电机运行参数初始化等都在里面。
+4.有些客户需要通过串口命令控制电机，在motor.c里面Deal_Cmd函数实现了复位、速度控制、停止控制、位置控制功能可供用户参考。
+5.该例程实现的是通用控制算法，有些客户对速度要求高，可以将无关代码去掉。
+6.跟随控制因为需要做一些特殊处理，所以是单独的工程，主要功能在RePosition函数中
